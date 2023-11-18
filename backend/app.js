@@ -7,9 +7,6 @@ require("dotenv").config();
 var cors = require('cors');
 const path = require('path');
 
-
-
-
 // import routes
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -19,17 +16,17 @@ const jobRoute = require('./routes/jobsRoutes');
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 
-//database connection
+// database connection
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
-  useFindAndModify: true
+  useFindAndModify: false // Set this to false
 })
   .then(() => console.log("DB connected"))
   .catch((err) => console.log(err));
 
-//MIDDLEWARE
+// MIDDLEWARE
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
@@ -41,11 +38,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(cors());
 
-
-//ROUTES MIDDLEWARE
-// app.get('/', (req, res) => {
-//     res.send("Hello from Node Js");
-// })
+// ROUTES MIDDLEWARE
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api', jobTypeRoute);
@@ -68,7 +61,7 @@ if (process.env.NODE_ENV === 'production') {
 // error middleware
 app.use(errorHandler);
 
-//port
+// port
 const port = process.env.PORT || 9000
 
 app.listen(port, () => {
