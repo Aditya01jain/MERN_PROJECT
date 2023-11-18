@@ -55,5 +55,5 @@
   "devDependencies": {
     "@redux-devtools/extension": "^3.2.5"
   },
-  "proxy": "http://localhost:9000"
+  "proxy": "https://jobboard-ep16.onrender.com"
 }
