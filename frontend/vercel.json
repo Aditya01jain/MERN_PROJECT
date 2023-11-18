@@ -1,0 +1,9 @@
+{
+    "rewrites": [
+      {
+        "source": "/api/(.*)",
+        "destination": "https://jobboard-ep16.onrender.com/api/$1"
+      }
+    ]
+  }
+  
